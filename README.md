@@ -15,6 +15,5 @@ El análisis responde estas preguntas:
 - Motor: PostgreSQL alojado en Neon.
 - Base de datos: `inmobiliaria`.
 - Tablas visibles en el navegador de Power BI: `public.catalogo`, `public.clientes`, `public.detalle_operacion`, `public.operaciones` y `public.sedes`.
-- Las credenciales no se guardan en este repositorio.
 
 
