@@ -1,0 +1,105 @@
+table 'public operaciones'
+	lineageTag: 10ed448b-3f10-40a1-9b88-6c9c05a40898
+
+	measure Operaciones =
+			
+			DISTINCTCOUNT('public operaciones'[operacion_id])
+		formatString: 0
+		lineageTag: 969748ff-477d-4ebb-a3dc-ee8d9d0387bd
+
+	measure 'Operaciones completadas' =
+			
+			CALCULATE(
+			    [Operaciones],
+			    'public operaciones'[estado] = "completada"
+			)
+		formatString: 0
+		lineageTag: cf56e0a5-1898-4312-af79-fa24b7446468
+
+	column operacion_id
+		dataType: int64
+		formatString: 0
+		lineageTag: de923bdb-fda0-46da-9138-b9767270b692
+		summarizeBy: none
+		sourceColumn: operacion_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cliente_id
+		dataType: int64
+		formatString: 0
+		lineageTag: df11129e-9f56-4c69-ad1f-30f22c050861
+		summarizeBy: none
+		sourceColumn: cliente_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sede_id
+		dataType: int64
+		formatString: 0
+		lineageTag: db2cd109-b3b4-47c4-86bc-f6efa106c7ca
+		summarizeBy: none
+		sourceColumn: sede_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a40ca56e-bd16-493a-80cf-a401b8a24784
+		summarizeBy: none
+		sourceColumn: fecha
+
+		variation Variación
+			isDefault
+			relationship: 4d02d808-cb04-48fb-948f-51c829b4373f
+			defaultHierarchy: LocalDateTable_bc491e06-7cce-4fe3-a673-b6718297bbce.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: dd88209c-80b8-4394-93b5-2d5362bc96b6
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column canal
+		dataType: string
+		lineageTag: 56bae3fb-c1f8-4a7b-98cc-8438cdbae216
+		summarizeBy: none
+		sourceColumn: canal
+
+		annotation SummarizationSetBy = Automatic
+
+	column actualizado_en
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1d962f86-763e-46ea-8328-5f39142d556b
+		summarizeBy: none
+		sourceColumn: actualizado_en
+
+		variation Variación
+			isDefault
+			relationship: 996cffa2-f357-4569-a6a2-c52467a7cae6
+			defaultHierarchy: LocalDateTable_59127e89-0ddd-44eb-bb05-6aae7cf02f9f.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public operaciones' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("ep-wandering-wildflower-bdo482tz-pooler.c-8.us-east-2.aws.neon.tech:5432", "inmobiliaria"),
+				    public_operaciones = Origen{[Schema="public",Item="operaciones"]}[Data],
+				    #"Texto recortado" = Table.TransformColumns(public_operaciones,{{"estado", Text.Trim, type text}, {"canal", Text.Trim, type text}}),
+				    #"Filas filtradas" = Table.SelectRows(#"Texto recortado", each ([fecha] <> null and [fecha] <> #datetime(1900, 1, 1, 0, 0, 0) and [fecha] <> #datetime(1970, 1, 1, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 2, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 4, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 6, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 8, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 10, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 12, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 13, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 14, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 15, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 17, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 19, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 21, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 23, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 25, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 26, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 27, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 28, 0, 0, 0) and [fecha] <> #datetime(2023, 11, 29, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 2, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 4, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 6, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 7, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 8, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 9, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 10, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 11, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 12, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 13, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 14, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 15, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 17, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 19, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 21, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 22, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 23, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 24, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 25, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 26, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 27, 0, 0, 0) and [fecha] <> #datetime(2023, 12, 28, 0, 0, 0) and [fecha] <> #datetime(2099, 12, 31, 0, 0, 0) and [fecha] <> #datetime(2099, 12, 31, 23, 59, 0) and [fecha] <> #datetime(2100, 1, 1, 0, 0, 0))),
+				    #"Filas filtradas1" = Table.SelectRows(#"Filas filtradas", each [fecha] <> null and [fecha] <> "")
+				in
+				    #"Filas filtradas1"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,303 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "934a7e4e91d4589d8576",
+  "position": {
+    "x": 552,
+    "y": 449,
+    "z": 7000,
+    "height": 244,
+    "width": 728,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "En el período analizado se completaron 700 operaciones, por un importe de $1.29 millones.",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffd166"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Propiedades y servicios:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ffd166"
+                    }
+                  },
+                  {
+                    "value": " ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffd166"
+                    }
+                  },
+                  {
+                    "value": "Los locales comerciales concentran el mayor importe ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "(",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": "$415 mil",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": "),",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": " seguidos por los apartamentos familiares ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "(",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": "$338 mil",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": ")",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": " y las casas suburbanas ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "(",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": "$313 mil",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": "). ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Evolución por sede:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ffd166"
+                    }
+                  },
+                  {
+                    "value": " La sede Sur registra los picos mensuales más altos.",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Segmentos y categorías:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ffd166"
+                    }
+                  },
+                  {
+                    "value": " Alquiler aporta más importe que Servicio. El segmento Nuevo lidera Alquiler (",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "$426.48 mil",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "), mientras que Ocasional lidera Servicio ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "value": "(",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": "$17.03 mil",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  },
+                  {
+                    "value": "). ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#ff735e"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hallazgos'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFD166'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0B2030'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

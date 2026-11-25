@@ -1,0 +1,42 @@
+table 'public sedes'
+	lineageTag: a6142cd6-3a6d-4ea9-966e-796a44828d10
+
+	column sede_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 57d4dcae-21d5-4284-a81c-bf97cea9100e
+		summarizeBy: none
+		sourceColumn: sede_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre
+		dataType: string
+		lineageTag: 7179e8a0-b5aa-4374-86a3-0d0d8028c982
+		summarizeBy: none
+		sourceColumn: nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column ciudad
+		dataType: string
+		lineageTag: baf552de-7d03-4265-8241-95d7fef14b00
+		summarizeBy: none
+		sourceColumn: ciudad
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public sedes' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("ep-wandering-wildflower-bdo482tz-pooler.c-8.us-east-2.aws.neon.tech:5432", "inmobiliaria"),
+				    public_sedes = Origen{[Schema="public",Item="sedes"]}[Data],
+				    #"Texto recortado" = Table.TransformColumns(public_sedes,{{"ciudad", Text.Trim, type text}, {"nombre", Text.Trim, type text}})
+				in
+				    #"Texto recortado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

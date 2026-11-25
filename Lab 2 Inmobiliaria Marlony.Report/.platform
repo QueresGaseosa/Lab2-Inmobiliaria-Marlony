@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Lab 2 Inmobiliaria Marlony"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c773fc0d-0ee9-4d88-9a89-8e2bd3b39de7"
+  }
+}

@@ -1,0 +1,80 @@
+table 'public detalle_operacion'
+	lineageTag: d6309a0a-f169-4c93-a278-726db686acd8
+
+	measure 'Importe promedio por operación' =
+			
+			DIVIDE([Importe completado], [Operaciones completadas])
+		lineageTag: 0a366e04-ce24-48e3-a3a7-19ff73431109
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column detalle_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 81cd8bfa-a393-4c90-8b56-8eb88760c90c
+		summarizeBy: sum
+		sourceColumn: detalle_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column operacion_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f2cbe8c-073c-4322-a8ad-7d6402178030
+		summarizeBy: none
+		sourceColumn: operacion_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column producto_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cd85bdf-467b-44fa-a24a-0f68fefe51d8
+		summarizeBy: none
+		sourceColumn: producto_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cantidad
+		dataType: int64
+		formatString: 0
+		lineageTag: 822c0205-2637-43c6-83b9-868f8147ba2d
+		summarizeBy: sum
+		sourceColumn: cantidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column precio_unitario
+		dataType: double
+		lineageTag: 18e4ea06-8d70-410f-b713-5698fb269cc3
+		summarizeBy: sum
+		sourceColumn: precio_unitario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column descuento
+		dataType: double
+		lineageTag: b0eb3752-44ac-43a9-b8df-eff6c7169710
+		summarizeBy: sum
+		sourceColumn: descuento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public detalle_operacion' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("ep-wandering-wildflower-bdo482tz-pooler.c-8.us-east-2.aws.neon.tech:5432", "inmobiliaria"),
+				    public_detalle_operacion = Origen{[Schema="public",Item="detalle_operacion"]}[Data],
+				    #"Filas filtradas" = Table.SelectRows(public_detalle_operacion, each ([producto_id] <> 7 and [producto_id] <> 8 and [producto_id] <> 9 and [producto_id] <> 10))
+				in
+				    #"Filas filtradas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

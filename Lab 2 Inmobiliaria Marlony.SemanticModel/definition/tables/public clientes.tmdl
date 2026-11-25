@@ -1,0 +1,57 @@
+table 'public clientes'
+	lineageTag: c45de166-3d53-4a8e-b24e-97892e83df9c
+
+	column cliente_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 62ae808f-2dbd-42c4-b89d-f4151c036fac
+		summarizeBy: none
+		sourceColumn: cliente_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre
+		dataType: string
+		lineageTag: f9869e93-bd4b-4f4c-967c-20e6a274a70c
+		summarizeBy: none
+		sourceColumn: nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column segmento
+		dataType: string
+		lineageTag: ba256206-6007-449b-8eda-da54be4ccd65
+		summarizeBy: none
+		sourceColumn: segmento
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_registro
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0a771a50-5f88-48a9-9321-4b1ec1a22ad8
+		summarizeBy: none
+		sourceColumn: fecha_registro
+
+		variation Variación
+			isDefault
+			relationship: d1ed709d-3219-43ed-9bb1-1383ba9f56b5
+			defaultHierarchy: LocalDateTable_08563e7a-723d-40ed-bf7a-651c9a313d92.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'public clientes' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("ep-wandering-wildflower-bdo482tz-pooler.c-8.us-east-2.aws.neon.tech:5432", "inmobiliaria"),
+				    public_clientes = Origen{[Schema="public",Item="clientes"]}[Data]
+				in
+				    public_clientes
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

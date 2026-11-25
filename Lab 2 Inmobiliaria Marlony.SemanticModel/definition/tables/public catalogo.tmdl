@@ -1,0 +1,73 @@
+table 'public catalogo'
+	lineageTag: b114fe4c-0be2-4af5-93a0-81af3aa4dfe7
+
+	measure 'Importe neto' =
+			
+			SUMX(
+			    'public detalle_operacion',
+			    'public detalle_operacion'[cantidad] *
+			    ('public detalle_operacion'[precio_unitario] - 'public detalle_operacion'[descuento])
+			)
+		lineageTag: 4c3c4a1f-84f3-46d0-80b0-2d67cbb19349
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Importe completado' =
+			
+			CALCULATE(
+			    [Importe neto],
+			    'public operaciones'[estado] = "completada"
+			)
+		lineageTag: 4d0b8756-1079-4a98-84d4-c59bc9a64add
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column producto_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ca06950b-b987-4dea-a74e-3421549d9022
+		summarizeBy: none
+		sourceColumn: producto_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre
+		dataType: string
+		lineageTag: 0f2fd6c1-92eb-4ed0-bdc6-c58ef6fa195c
+		summarizeBy: none
+		sourceColumn: nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: cf93e569-6e1c-4639-be5f-f5dd4dcfbbde
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column precio_lista
+		dataType: double
+		lineageTag: 14de84b8-6e3a-4563-8c9f-66ade87d2bf9
+		summarizeBy: none
+		sourceColumn: precio_lista
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public catalogo' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("ep-wandering-wildflower-bdo482tz-pooler.c-8.us-east-2.aws.neon.tech:5432", "inmobiliaria"),
+				    public_catalogo = Origen{[Schema="public",Item="catalogo"]}[Data],
+				    #"Filas filtradas" = Table.SelectRows(public_catalogo, each ([nombre] <> null and [nombre] <> "   " and [nombre] <> "N/A" and [nombre] <> "Prodcto mal escrto"))
+				in
+				    #"Filas filtradas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
